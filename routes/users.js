@@ -25,6 +25,10 @@ const userSchema = new mongoose.Schema({
 
   }],
 
+  dp:{
+    type: String
+  },
+
   fullname: {
     type: String,
     required: true

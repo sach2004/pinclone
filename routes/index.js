@@ -8,6 +8,26 @@ const upload = require('./multer');
 passport.use(new localStrategy(userModel.authenticate()));
 
 
+router.post('/delete', isLoggedIn, async(req,res) =>{
+
+  const postId = req.body.postidform;
+  try {
+    
+    await postModel.findByIdAndDelete(postId);
+
+    let user = await userModel.findOne({ username: req.session.passport.user });
+    user.posts = user.posts.filter(post => post.toString() !== postId);
+    await user.save();
+    res.redirect('/profile'); // Redirect back to the profile page after deletion
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error deleting the post");
+  }
+  
+  
+})
+
+
 router.post('/upload', isLoggedIn, upload.single('file'), async (req,res) =>{
   if(!req.file){
     return res.status(400).send('No file were uploaded.');
@@ -20,6 +40,18 @@ router.post('/upload', isLoggedIn, upload.single('file'), async (req,res) =>{
   });
 
   user.posts.push(currpost._id)
+  await user.save();
+
+  res.redirect('/profile');
+
+});
+
+router.post('/dpupload', isLoggedIn, upload.single('file'), async (req,res) =>{
+  if(!req.file){
+    return res.status(400).send('No file were uploaded.');
+  }
+  let user = await userModel.findOne({username : req.session.passport.user });
+  user.dp=req.file.filename;
   await user.save();
 
   res.redirect('/profile');

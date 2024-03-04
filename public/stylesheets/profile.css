@@ -10,6 +10,9 @@ body {
   src: url("../font/Gilroy-Regular.ttf");
 }
 
+.dp:hover{
+  cursor: pointer;
+}
 
 .navig{
   display: flex;
@@ -140,6 +143,24 @@ input{
   border-radius: 30px;
   transition: background-color 0.3s;
   font-weight: 500;
+}
+
+.delete{
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: rgb(255, 0, 0);
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 500;
+  border: none;
+  display: none;
+
+  
+}
+
+.delete:hover{
+  background-color: rgba(170, 0, 0, 0.812);
 }
 
 .logout:hover {
