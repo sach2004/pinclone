@@ -27,9 +27,13 @@
         <div class="carder">
           <form  hidden id="dpform" action="/dpupload" method="POST" enctype="multipart/form-data" >
             <input id="file" type="file" name="file"></form>
-          <div class="profile-picture">
-            <img class="dp"src="../images/uploads/<%= curruser.dp %>" alt="Profile Picture">
-          </div>
+            <div class="profile-picture">
+              <% if(curruser.dp){ %>
+                <img class="dp" src="/images/uploads/<%= curruser.dp %>" alt="Profile Picture">
+              <% } else { %>
+                <img class="dp"src="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png" alt="Default Profile Picture">
+              <% } %>
+            </div>
           <h2 class="name"><%= curruser.fullname %></h2>
           <h3 class="username">@<%= curruser.username %></h3>
           <p class="tagline">Tagline</p>

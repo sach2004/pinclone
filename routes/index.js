@@ -71,8 +71,11 @@ router.get('/login', function(req, res, next) {
   res.render('login', {error: req.flash('error')});
 });
 
-router.get('/feed', function(req, res, next) {
-  res.render('feed', { title: 'Feed Page' });
+router.get('/feed', async function(req, res, next) {
+
+  let allposts = await postModel.find({});
+
+  res.render('feed', { title: 'Feed Page', allposts : allposts });
 });
 
 router.post('/register', function(req, res){
