@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect("mongodb+srv://sachin:sachin@cluster0.nlf26rw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+mongoose.connect("mongodb+srv://thankachansachin1503:iz1glhyn6lCLB7oW@cluster0.s944z.mongodb.net/");
 
 const plm = require("passport-local-mongoose");
 
